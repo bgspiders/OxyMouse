@@ -14,7 +14,7 @@ class PerlinMouse(MouseMovement):
         persistence: float = 0.5,
         lacunarity: float = 2.0,
         seed: int = random.randint(0, 100000),
-    ) -> list[tuple[int, int]]:
+    ):
         """
         Generate mouse movements using Perlin noise.
 
@@ -47,7 +47,7 @@ class PerlinMouse(MouseMovement):
     @staticmethod
     def generate_coordinates(
         from_x: int = 0, from_y: int = 0, to_x: int = 1000, to_y: int = 1000
-    ) -> list[tuple[int, int]]:
+    ):
         """
         Generate a list of coordinates from (from_x, from_y) to (to_x, to_y) using Perlin noise.
         """
@@ -65,7 +65,7 @@ class PerlinMouse(MouseMovement):
         return scaled_movements
 
     @staticmethod
-    def generate_random_coordinates(viewport_width: int = 1920, viewport_height: int = 1080) -> list[tuple[int, int]]:
+    def generate_random_coordinates(viewport_width: int = 1920, viewport_height: int = 1080) :
         """
         Generate random coordinates within the given viewport dimensions using Perlin noise.
         """
@@ -74,7 +74,7 @@ class PerlinMouse(MouseMovement):
         return movements
 
     @staticmethod
-    def generate_scroll_coordinates(start_y: int = 0, end_y: int = 1000) -> list[tuple[int, int]]:
+    def generate_scroll_coordinates(start_y: int = 0, end_y: int = 1000):
         """
         Generate a list of y-coordinates for scrolling from start_y to end_y using Perlin noise.
         """

@@ -9,19 +9,19 @@ from oxymouse.algorithms.base import MouseMovement
 
 class GaussianMouse(MouseMovement):
     @staticmethod
-    def random_walk(length: int, stddev: float) -> np.ndarray[Any, np.dtype[np.float64]]:
+    def random_walk(length: int, stddev: float):
         return np.cumsum(np.random.normal(0, stddev, length))
 
     @staticmethod
     def gaussian_smooth(
-        data: np.ndarray[Any, np.dtype[np.float64]], sigma: float
-    ) -> np.ndarray[Any, np.dtype[np.float64]]:
+        data, sigma: float
+    ):
         return gaussian_filter1d(data, sigma)
 
     @staticmethod
     def morph_distribution(
-        data: np.ndarray[Any, np.dtype[np.float64]], target_mean: float, target_std: float
-    ) -> np.ndarray[Any, np.dtype[np.float64]]:
+        data, target_mean: float, target_std: float
+    ):
         return (data - np.mean(data)) / np.std(data) * target_std + target_mean
 
     @staticmethod
@@ -37,7 +37,7 @@ class GaussianMouse(MouseMovement):
         duration: float = 1.0,
         smoothness: float = 2.0,
         randomness: float = 1.0,
-    ) -> list[tuple[int, int]]:
+    ):
         """
         Generate mouse movements using Gaussian random walk and Bezier curves.
 
@@ -82,14 +82,14 @@ class GaussianMouse(MouseMovement):
     @staticmethod
     def generate_coordinates(
         from_x: int = 0, from_y: int = 0, to_x: int = 1000, to_y: int = 1000
-    ) -> list[tuple[int, int]]:
+    ) :
         """
         Generate a list of coordinates from (from_x, from_y) to (to_x, to_y) using Gaussian random walk.
         """
         return GaussianMouse.generate_gaussian_mouse_movements(from_x, from_y, to_x, to_y)
 
     @staticmethod
-    def generate_random_coordinates(viewport_width: int = 1920, viewport_height: int = 1080) -> list[tuple[int, int]]:
+    def generate_random_coordinates(viewport_width: int = 1920, viewport_height: int = 1080):
         """
         Generate random coordinates within the given viewport dimensions using Gaussian random walk.
         """
@@ -100,7 +100,7 @@ class GaussianMouse(MouseMovement):
         return movements
 
     @staticmethod
-    def generate_scroll_coordinates(start_y: int = 0, end_y: int = 1000) -> list[tuple[int, int]]:
+    def generate_scroll_coordinates(start_y: int = 0, end_y: int = 1000):
         """
         Generate a list of y-coordinates for scrolling from start_y to end_y using Gaussian random walk.
         """

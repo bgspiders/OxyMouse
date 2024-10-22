@@ -10,15 +10,15 @@ from oxymouse.algorithms.base import MouseMovement
 class BezierMouse(MouseMovement):
     @staticmethod
     def bernstein_poly(
-        i: int, n: int, t: np.ndarray[Any, np.dtype[np.float64]]
-    ) -> np.ndarray[Any, np.dtype[np.float64]]:
+        i: int, n: int, t
+    ) :
         """
         The Bernstein polynomial of n, i as a function of t
         """
         return comb(n, i) * (t**i) * (1 - t) ** (n - i)
 
     @staticmethod
-    def bezier_curve(points: list[tuple[int, int]], num_steps: int = 1000) -> list[tuple[int, int]]:
+    def bezier_curve(points, num_steps: int = 1000) :
         """
         Given a set of control points, return the
         bezier curve defined by the control points.
@@ -47,7 +47,7 @@ class BezierMouse(MouseMovement):
         duration: float = 1.0,
         complexity: int = 4,
         randomness: float = 1.0,
-    ) -> list[tuple[int, int]]:
+    ):
         """
         Generate mouse movements using Bézier curves.
 
@@ -82,14 +82,14 @@ class BezierMouse(MouseMovement):
     @staticmethod
     def generate_coordinates(
         from_x: int = 0, from_y: int = 0, to_x: int = 1000, to_y: int = 1000
-    ) -> list[tuple[int, int]]:
+    ) :
         """
         Generate a list of coordinates from (from_x, from_y) to (to_x, to_y) using Bézier curves.
         """
         return BezierMouse.generate_bezier_mouse_movements(from_x, from_y, to_x, to_y)
 
     @staticmethod
-    def generate_random_coordinates(viewport_width: int = 1920, viewport_height: int = 1080) -> list[tuple[int, int]]:
+    def generate_random_coordinates(viewport_width: int = 1920, viewport_height: int = 1080):
         """
         Generate random coordinates within the given viewport dimensions using Bézier curves.
         """
@@ -100,7 +100,7 @@ class BezierMouse(MouseMovement):
         return movements
 
     @staticmethod
-    def generate_scroll_coordinates(start_y: int = 0, end_y: int = 1000) -> list[tuple[int, int]]:
+    def generate_scroll_coordinates(start_y: int = 0, end_y: int = 1000):
         """
         Generate a list of y-coordinates for scrolling from start_y to end_y using Bézier curves.
         """
